@@ -14,17 +14,17 @@ namespace hls
       //Initialises a vector starting from a C-style one
       Vector(const TScalar init[length]);
       //Adds two vectors
-      Vector<TScalar, length> operator+ (const Vector<TScalar,length> & aVector);
+      Vector<TScalar, length> operator+ (const Vector<TScalar,length> & aVector) const;
       //Copies from a C-style vector
       void operator= (const TScalar values[length]);
       //Copies from another vector 
       void operator= (const Vector<TScalar, length> aVector);
       //Scalar multiplication
-      TScalar operator* (const Vector<TScalar,length> & aVector);
+      TScalar operator* (const Vector<TScalar,length> & aVector) const;
       //Single element access
-      TScalar operator[] (unsigned int index);
+      TScalar & operator[] (unsigned int index);
       //Copies to a C-style vector
-      void copyToArray(TScalar dest[length]);
+      void copyToArray(TScalar dest[length]) const;
   };
 }
 
@@ -49,7 +49,7 @@ hls::Vector<TScalar, length>::Vector(const TScalar init[length])
 }
 
 template <class TScalar, unsigned int length>
-hls::Vector<TScalar, length> hls::Vector<TScalar, length>::operator+ (const hls::Vector<TScalar,length> & aVector)
+hls::Vector<TScalar, length> hls::Vector<TScalar, length>::operator+ (const hls::Vector<TScalar,length> & aVector) const
 {
   #pragma HLS inline
   hls::Vector<TScalar, length> lVector;
@@ -81,7 +81,7 @@ void hls::Vector<TScalar, length>::operator= (const hls::Vector<TScalar, length>
 }
 
 template <class TScalar, unsigned int length>
-TScalar hls::Vector<TScalar, length>::operator* (const hls::Vector<TScalar,length> & aVector)
+TScalar hls::Vector<TScalar, length>::operator* (const hls::Vector<TScalar,length> & aVector) const
 {
   #pragma HLS inline
   TScalar lProduct = 0;
@@ -93,14 +93,14 @@ TScalar hls::Vector<TScalar, length>::operator* (const hls::Vector<TScalar,lengt
 }
 
 template <class TScalar, unsigned int length>
-TScalar hls::Vector<TScalar, length>::operator[] (unsigned int index)
+TScalar & hls::Vector<TScalar, length>::operator[] (unsigned int index)
 {
   #pragma HLS inline
   return this -> _data[index];
 }
 
 template <class TScalar, unsigned int length>
-void hls::Vector<TScalar, length>::copyToArray(TScalar dest[length])
+void hls::Vector<TScalar, length>::copyToArray(TScalar dest[length]) const
 {
   #pragma HLS inline
   for (unsigned int x = 0; x < length; x++)
