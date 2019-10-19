@@ -1,19 +1,13 @@
 #define ARRAY_SIZE 100
 #include <ap_int.h>
+#include "HLS_Vector.h"
 
-typedef ap_int<16> Vector[ARRAY_SIZE];
-
-template<class TVector, unsigned int vectorSize>
-void hls_vectorSum(const TVector inVector1,
-              const TVector inVector2,
-              TVector outVectorSum);
-
-ap_int<16> hls_vectorScalarProduct(const Vector inVector1,
-              const Vector inVector2);
+typedef hls::Vector<ap_int<16>, ARRAY_SIZE> CPPVector;
+typedef ap_int<16> CVector[ARRAY_SIZE];
 
 void hls_vectorOperations(
-              const Vector inVector1,
-              const Vector inVector2, 
-              Vector outVectorSum,
+              const CVector inVector1,
+              const CVector inVector2, 
+              CVector outVectorSum,
               ap_int<16> & outProduct
              );

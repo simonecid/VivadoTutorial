@@ -6,9 +6,9 @@
 
 int main(int argc, char const *argv[])
 {
-  Vector lArray1;
-  Vector lArray2;
-  Vector lArray3;
+  CVector lArray1;
+  CVector lArray2;
+  CVector lArray3;
   ap_int<16> lProduct;
 
   for (int a = 0; a < ARRAY_SIZE; a++)
