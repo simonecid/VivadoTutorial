@@ -7,7 +7,7 @@ open_project "VivadoTutorial"
 # to make sure you delete the existing project and create a new one with the updated file list
 
 # Adding an HLS file
-add_files "HLS_Vectors.cpp"
+add_files -cflags "-std=c++11" "HLS_Vectors.cpp"
 
 # Adding a TB file
 add_files -tb "TB_Vectors.cpp"
